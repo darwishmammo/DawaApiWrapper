@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+
+		<PackageId>Darwish.DawaApi.Sdk</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Darwish Jamil Mammo</Authors>
+		<Company>None</Company>
+		<Description>A simple SDK to interact with DawaApi, designed for dependency injection.</Description>
+		<RepositoryUrl>https://github.com/your-username/my-api-sdk</RepositoryUrl>
+		<PackageTags>dawa;api;</PackageTags>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+		<PackageOutputPath>$(USERPROFILE)\Downloads</PackageOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+		<PackageOutputPath>$(HOME)/Downloads</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.3.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
+	</ItemGroup>
+
+</Project>
