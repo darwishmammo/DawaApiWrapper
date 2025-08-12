@@ -21,7 +21,7 @@ public class JordstykkeQueryParams : BaseDawaRequest
     public double? Y { get; set; }
     public string? Side { get; set; }
     public string? PerSide { get; set; }
-    public int? SRID { get; set; }
+    public SRID? SRID { get; set; }
     public double[][]? Polygon { get; set; }
     public Cirkel? Cirkel { get; set; }
     //public string? Struktur { get; set; }
@@ -44,7 +44,7 @@ public class JordstykkeQueryParams : BaseDawaRequest
         if (Y is not null) dict["y"] = Y.Value.ToString(CultureInfo.InvariantCulture);
         if (Side is not null) dict["side"] = Side;
         if (PerSide is not null) dict["per_side"] = PerSide;
-        if (SRID is not null) dict["srid"] = $"{SRID}";
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Polygon is not null) dict["polygon"] = Polygon.ToPolygonString();
         if (Cirkel is not null) dict["cirkel"] = $"{Cirkel}";
         //if (Struktur is not null) dict["struktur"] = Struktur;

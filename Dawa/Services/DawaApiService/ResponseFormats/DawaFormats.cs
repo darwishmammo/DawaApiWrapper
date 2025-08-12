@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dawa.Services.DawaApiService;
+namespace Dawa.Services.DawaApiService.ResponseFormats;
 
 public static class DawaFormats
 {

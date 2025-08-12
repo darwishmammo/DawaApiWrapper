@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Dawa.Models;
 
+[JsonConverter(typeof(GeometryJsonConverter))]
 public record Geometry
 {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -46,6 +47,15 @@ public record PolygonGeometry : Geometry
     }
 }
 
+public record MultiLineStringGeometry : Geometry
+{
+    public new double[][][]? Coordinates { get; set; }
+    public MultiLineStringGeometry(double[][][]? coordinates) : base("MultiLineString", coordinates)
+    {
+        Coordinates = coordinates;
+    }
+}
+
 public class GeometryJsonConverter : JsonConverter<Geometry>
 {
     public override Geometry? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -65,6 +75,9 @@ public class GeometryJsonConverter : JsonConverter<Geometry>
             ),
             "MultiPolygon" => new MultiPolygonGeometry(
                 JsonSerializer.Deserialize<double[][][][]>(root.GetProperty("coordinates"))
+            ),
+            "MultiLineString" => new MultiLineStringGeometry(
+                JsonSerializer.Deserialize<double[][][]>(root.GetProperty("coordinates"))
             ),
             _ => throw new JsonException($"Unsupported geometry type: {type}")
         };
@@ -89,6 +102,9 @@ public class GeometryJsonConverter : JsonConverter<Geometry>
                 break;
             case PolygonGeometry polygon:
                 JsonSerializer.Serialize(writer, polygon.Coordinates, options);
+                break;
+            case MultiLineStringGeometry multiLineString:
+                JsonSerializer.Serialize(writer, multiLineString.Coordinates, options);
                 break;
             default:
                 JsonSerializer.Serialize(writer, value.Coordinates, options);

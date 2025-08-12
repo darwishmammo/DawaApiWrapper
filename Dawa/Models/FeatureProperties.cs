@@ -10,7 +10,7 @@ public record FeatureProperties
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? Status { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public int? Darstatus { get; set; }
+    public IntOrString? Darstatus { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public DateTime? Oprettet { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

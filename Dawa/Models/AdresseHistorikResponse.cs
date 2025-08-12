@@ -1,48 +1,38 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Dawa.Models;
 
-public record NavngivenVej
+public record AdresseHistorikResponse
 {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Id { get; set; }
-
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Href { get; set; }
-
+    public int? Status { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public IntOrString? Darstatus { get; set; }
-
+    public int? Adgangspunktstatus { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Navn { get; set; }
-
+    public string? Kommunekode { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Adresseringsnavn { get; set; }
-
+    public string? Vejkode { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Administrerendekommune? Administrerendekommune { get; set; }
-
+    public string? Vejnavn { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Retskrivningskontrol { get; set; }
-
+    public string? Husnr { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Udtaltvejnavn { get; set; }
-
+    public string? Supplerendebynavn { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public float[]? Visueltcenter { get; set; }
-
+    public string? Postnr { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public float[]? Bbox { get; set; }
-
+    public string? Postnrnavn { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Historik? Historik { get; set; }
-
+    public DateTime? Virkningstart { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Vejstykke[]? Vejstykker { get; set; }
-
+    public DateTime? Virkningslut { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Postnummer[]? Postnumre { get; set; }
-
+    public string? Adgangsadresseid { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Beliggenhed? Beliggenhed { get; set; }
+    public string? Etage { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Dør { get; set; }
 }

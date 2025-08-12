@@ -5,9 +5,9 @@ namespace Dawa.Models.Parameters;
 
 public class PostnummerReverseGeoCodeQueryParams(double x, double y) : BaseDawaRequest
 {
-    public double X { get; set; } = x;
-    public double Y { get; set; } = y;
-    public int? Srid { get; set; }
+    public double X { get; } = x;
+    public double Y { get; } = y;
+    public SRID? SRID { get; set; }
     public string? Noformat { get; set; }
     public string? Landpostnumre { get; set; }
 
@@ -19,7 +19,7 @@ public class PostnummerReverseGeoCodeQueryParams(double x, double y) : BaseDawaR
             ["y"] = Y.ToString(CultureInfo.InvariantCulture)
         };
 
-        if (Srid is not null) dict["srid"] = $"{Srid}";
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Noformat is not null) dict["noformat"] = Noformat;
         if (Landpostnumre is not null) dict["landpostnumre"] = Landpostnumre;
         //if (Struktur is not null) dict["struktur"] = Struktur;

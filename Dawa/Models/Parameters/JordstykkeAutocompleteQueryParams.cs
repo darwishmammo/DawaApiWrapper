@@ -17,7 +17,7 @@ public class JordstykkeAutocompleteQueryParams : BaseDawaRequest
     public string? Featureid { get; set; }
     public string? Moderjordstykke { get; set; }
     public string? Bfenummer { get; set; }
-    public string? SRID { get; set; }
+    public SRID? SRID { get; set; }
     public Cirkel? Cirkel { get; set; }
     public double[][]? Polygon { get; set; }
     public string? Side { get; set; }
@@ -37,7 +37,7 @@ public class JordstykkeAutocompleteQueryParams : BaseDawaRequest
         if (Featureid is not null) dict["featureid"] = Featureid;
         if (Moderjordstykke is not null) dict["moderjordstykke"] = Moderjordstykke;
         if (Bfenummer is not null) dict["bfenummer"] = Bfenummer;
-        if (SRID is not null) dict["srid"] = SRID;
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Cirkel is not null) dict["cirkel"] = $"{Cirkel}";
         if (Polygon is not null) dict["polygon"] = Polygon.ToPolygonString();
         if (Side is not null) dict["side"] = Side;

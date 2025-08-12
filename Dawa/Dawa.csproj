@@ -5,13 +5,13 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 
-		<PackageId>Darwish.DawaApi.Sdk</PackageId>
+		<PackageId>darwish.dawa.sdk</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>Darwish Jamil Mammo</Authors>
 		<Company>None</Company>
 		<Description>A simple SDK to interact with DawaApi, designed for dependency injection.</Description>
-		<RepositoryUrl>https://github.com/your-username/my-api-sdk</RepositoryUrl>
-		<PackageTags>dawa;api;</PackageTags>
+		<RepositoryUrl>https://github.com/darwishmammo/DawaApiWrapper</RepositoryUrl>
+		<PackageTags>dawa;api;danmark;adresser</PackageTags>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>

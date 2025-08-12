@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Dawa.Models.Parameters;
 
 public class JordstykkeOpslagQueryParams(string ejerlavkode, string matrikelnr) : BaseDawaRequest
 {
-    public string Ejerlavkode { get; set; } = ejerlavkode ?? throw new ArgumentNullException(nameof(ejerlavkode));
-    public string Matrikelnr { get; set; } = matrikelnr ?? throw new ArgumentNullException(nameof(matrikelnr));
+    public string Ejerlavkode { get; } = Throw.IfNullOrWhitespace(ejerlavkode, nameof(ejerlavkode)).Trim();
+    public string Matrikelnr { get; } = Throw.IfNullOrWhitespace(matrikelnr, nameof(matrikelnr)).Trim();
 
     public override Dictionary<string, string?> ToQueryParameters()
     {

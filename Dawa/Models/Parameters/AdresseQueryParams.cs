@@ -16,7 +16,7 @@ public class AdresseQueryParams : BaseDawaRequest
     public int? Kommunekode { get; set; }
     public string? MatrikelNr { get; set; }
     public int? Ejerlavkode { get; set; }
-    public int? SRID { get; set; }
+    public SRID? SRID { get; set; }
     public double[][]? Polygon { get; set; }
     public string? Status { get; set; }
     public string? HusNrFra { get; set; }
@@ -65,7 +65,7 @@ public class AdresseQueryParams : BaseDawaRequest
         if (Kommunekode is not null) dict["kommunekode"] = Kommunekode.Value.ToString("D4");
         if (MatrikelNr is not null) dict["matrikelnr"] = MatrikelNr;
         if (Ejerlavkode is not null) dict["ejerlavkode"] = $"{Ejerlavkode}";
-        if (SRID is not null) dict["srid"] = $"{SRID}";
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Polygon is not null) dict["polygon"] = Polygon.ToPolygonString();
         if (Cirkel is not null) dict["cirkel"] = $"{Cirkel}";
         if (Nøjagtighed is not null) dict["nøjagtighed"] = Nøjagtighed;

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dawa.Services.DawaApiService;
+namespace Dawa.Services.DawaApiService.ResponseFormats;
 
 public interface IAllFormatsRequestBuilder<TJson, TGeoJson> : IGeoJsonRequestBuilder<TJson, TGeoJson>
 {

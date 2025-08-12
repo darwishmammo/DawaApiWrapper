@@ -1,29 +1,38 @@
-﻿using System;
+﻿using Dawa.Services.DawaApiService.ResponseFormats;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Dawa.Services.DawaApiService;
 
-internal class RequestBuilder<TJson, TGeoJson> : IAllFormatsRequestBuilder<TJson, TGeoJson>
+internal class RequestBuilder<TJson, TGeoJson> : IJsonCsvRequestBuilder<TJson>, IAllFormatsRequestBuilder<TJson, TGeoJson>
 {
     private readonly Func<CancellationToken, Task<TJson?>> _jsonExecutor;
     private readonly Func<CancellationToken, Task<TGeoJson?>>? _geoJsonExecutor;
     private readonly Func<CancellationToken, Task<byte[]?>>? _csvExecutor;
 
     public RequestBuilder(
-        Func<CancellationToken, Task<TJson?>> jsonExecutor,
-        Func<CancellationToken, Task<TGeoJson?>> geoJsonExecutor,
-        Func<CancellationToken, Task<byte[]?>> csvExecutor)
+    Func<CancellationToken, Task<TJson?>> jsonExecutor)
     {
         _jsonExecutor = jsonExecutor;
-        _geoJsonExecutor = geoJsonExecutor;
+    }
+
+    public RequestBuilder(
+    Func<CancellationToken, Task<TJson?>> jsonExecutor,
+    Func<CancellationToken, Task<byte[]?>> csvExecutor)
+    {
+        _jsonExecutor = jsonExecutor;
         _csvExecutor = csvExecutor;
     }
 
     public RequestBuilder(
-    Func<CancellationToken, Task<TJson?>> jsonExecutor)
+    Func<CancellationToken, Task<TJson?>> jsonExecutor,
+    Func<CancellationToken, Task<TGeoJson?>> geoJsonExecutor,
+    Func<CancellationToken, Task<byte[]?>> csvExecutor)
     {
         _jsonExecutor = jsonExecutor;
+        _geoJsonExecutor = geoJsonExecutor;
+        _csvExecutor = csvExecutor;
     }
 
     public Task<TJson?> AsJsonAsync(CancellationToken cancellationToken) => _jsonExecutor(cancellationToken);

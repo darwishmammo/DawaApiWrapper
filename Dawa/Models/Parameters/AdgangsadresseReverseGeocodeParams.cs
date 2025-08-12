@@ -7,10 +7,10 @@ public class AdgangsadresseReverseGeocodeParams(double x, double y) : BaseDawaRe
 {
     public double X { get; set; } = x;
     public double Y { get; set; } = y;
-    public int? SRID { get; set; }
+    public SRID? SRID { get; set; }
     public Geometri? Geometri { get; set; }
-    public string? Medtagugyldige { get; set; }
-    public string? Medtagnedlagte { get; set; }
+    public bool? Medtagugyldige { get; set; }
+    public bool? Medtagnedlagte { get; set; }
 
     public override Dictionary<string, string?> ToQueryParameters()
     {
@@ -20,10 +20,10 @@ public class AdgangsadresseReverseGeocodeParams(double x, double y) : BaseDawaRe
             ["y"] = Y.ToString(CultureInfo.InvariantCulture)
         };
 
-        if (SRID is not null) dict["srid"] = $"{SRID}";
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Geometri is not null) dict["geometri"] = $"{Geometri}";
-        if (Medtagugyldige is not null) dict["medtagugyldige"] = Medtagugyldige;
-        if (Medtagnedlagte is not null) dict["medtagnedlagte"] = Medtagnedlagte;
+        if (Medtagugyldige is not null) dict["medtagugyldige"] = Medtagugyldige.Value ? "true" : "false";
+        if (Medtagnedlagte is not null) dict["medtagnedlagte"] = Medtagnedlagte.Value ? "true" : "false";
         //if (Struktur is not null) dict["struktur"] = $"{Struktur}";
 
         return dict;

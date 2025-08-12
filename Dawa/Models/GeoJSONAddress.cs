@@ -18,4 +18,6 @@ public record GeoJSONAddress : IDawaEntity
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public FeatureProperties? Properties { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public double[]? Bbox { get; set; }
 }

@@ -1,4 +1,6 @@
-﻿namespace Dawa.Services.DawaApiService;
+﻿using Dawa.Services.DawaApiService.Endpoints;
+
+namespace Dawa.Services.DawaApiService;
 
 public interface IDawa
 {
@@ -7,4 +9,6 @@ public interface IDawa
     public IAdgangsadresseEndpoint Adgangsadresser { get; }
     public IPostnummerEndpoint Postnumre { get; }
     public IJordstykkeEndpoint Jordstykker { get; }
+    public INavngivnevejeEndpoint Navngivneveje { get; }
+    public IVejstykkeEndpoint Vejstykker { get; }
 }

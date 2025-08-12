@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Dawa.Models.Parameters;
 
-public class AutocompleteQueryParams(string query) : BaseDawaRequest
+public class AutocompleteQueryParams : BaseDawaRequest
 {
     public string? Type { get; set; }
     public Startfra? Startfra { get; set; }
-    public string Query { get; set; } = query ?? throw new ArgumentNullException(nameof(query));
+    public string? Query { get; set; }
     public int? Caretpos { get; set; }
     public int? Postnr { get; set; }
     public int? Kommunekode { get; set; }
@@ -22,14 +22,15 @@ public class AutocompleteQueryParams(string query) : BaseDawaRequest
     public double[][]? Polygon { get; set; }
     public Geometri? Geometri { get; set; }
     public Cirkel? Cirkel { get; set; }
-    public int? Srid { get; set; }
+    public SRID? SRID { get; set; }
     public int? Side { get; set; }
     public int? Per_side { get; set; }
 
     public override Dictionary<string, string?> ToQueryParameters()
     {
-        var dict = new Dictionary<string, string?> { ["q"] = Query };
+        var dict = new Dictionary<string, string?>();
 
+        if (Query is not null) dict["q"] = Query;
         if (Type is not null) dict["type"] = Type;
         if (Startfra is not null) dict["startfra"] = Startfra.ToString();
         if (Caretpos is not null) dict["caretpos"] = Caretpos.Value.ToString();
@@ -45,7 +46,7 @@ public class AutocompleteQueryParams(string query) : BaseDawaRequest
         if (Polygon is not null) dict["polygon"] = Polygon.ToPolygonString();
         if (Geometri is not null) dict["geometri"] = Geometri.ToString();
         if (Cirkel is not null) dict["cirkel"] = Cirkel.ToString();
-        if (Srid is not null) dict["srid"] = Srid.Value.ToString();
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Side is not null) dict["side"] = Side.Value.ToString();
         if (Per_side is not null) dict["per_side"] = Per_side.Value.ToString();
 

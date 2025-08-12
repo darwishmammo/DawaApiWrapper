@@ -11,7 +11,7 @@ public class PostnummerQueryParams : BaseDawaRequest
     public string? Navn { get; set; }
     public int? Kommunekode { get; set; }
     public string? Landpostnumre { get; set; }
-    public int? Srid { get; set; }
+    public SRID? SRID { get; set; }
     public Cirkel? Cirkel { get; set; }
     public double[][]? Polygon { get; set; }
     public string? Noformat { get; set; }
@@ -29,7 +29,7 @@ public class PostnummerQueryParams : BaseDawaRequest
         if (Navn is not null) dict["navn"] = Navn;
         if (Kommunekode is not null) dict["kommunekode"] = Kommunekode.Value.ToString("D4");
         if (Landpostnumre is not null) dict["landpostnumre"] = Landpostnumre;
-        if (Srid is not null) dict["srid"] = $"{Srid}";
+        if (SRID is not null) dict["srid"] = SRID.Value.ToSRIDString();
         if (Cirkel is not null) dict["cirkel"] = $"{Cirkel}";
         if (Polygon is not null) dict["polygon"] = Polygon.ToPolygonString();
         if (Noformat is not null) dict["noformat"] = Noformat;
