@@ -12,6 +12,8 @@
 		<Description>A simple SDK to interact with DawaApi, designed for dependency injection.</Description>
 		<RepositoryUrl>https://github.com/darwishmammo/DawaApiWrapper</RepositoryUrl>
 		<PackageTags>dawa;api;danmark;adresser</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
@@ -28,6 +30,10 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Readme.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 </Project>
