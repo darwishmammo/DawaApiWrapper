@@ -22,12 +22,14 @@ This package provides a fully typed interface to all major DAWA endpoints, with 
 ## 📦 Installation
 
 ```bash
-dotnet add package darwish.dawa.sdk
+dotnet add package Dawa
 ```
 ## 🚀 Getting Started
 
 1.  **Register the service** in your dependency container:
 ```
+using Dawa;
+
 builder.Services.AddDawa();
 ```
 2. **Resolve and use the client** anywhere via constructor injection or manually:
@@ -115,15 +117,15 @@ var result13 = await _dawa
     .Historik(new() { PerSide = 10 })
     .AsJsonAsync();
 
-var addresses = await dawa.Adgangsadresser
+var addresses = await _dawa.Adgangsadresser
     .Søge(new() { Query = "rostrupsvej 10", PostNr = 9000 })
-    .AsGeoJsonAsync();
+    .AsCsvAsync();
 
-var streets = await dawa.Vejstykker
+var streets = await _dawa.Vejstykker
     .Autocomplete(new() { Query = "jolle" })
     .AsJsonAsync();
 
-var location = await dawa.Vejstykker
+var location = await _dawa.Vejstykker
     .ReverseGeocode(new(12.5851, 55.6832))
     .AsJsonAsync();
 ```
